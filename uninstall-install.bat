@@ -24,6 +24,7 @@ wmic datafile where name="C:\\Windows\\System32\\termsrv.dll" get Version /value
 "wget.exe" --no-check-certificate "https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="rdpwrap.ini"
 
 
+
 @echo off
 if not exist "%~dp0RDPWInst.exe" goto :error
 "%~dp0RDPWInst" -i -r
