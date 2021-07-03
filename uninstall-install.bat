@@ -19,9 +19,11 @@ wmic datafile where name="C:\\Windows\\System32\\termsrv.dll" get Version /value
 @REM https://redfern.me/skipping-certificate-checks-with-wget/
 @REM https://serverfault.com/questions/171369/how-to-allow-wget-to-overwrite-files
 @REM "%~dp0wget.exe" --no-check-certificate https://raw.githubusercontent.com/zeram/rdpwrap/master/res/rdpwrap.ini --output-document="%~dp0rdpwrap.ini"
-"%~dp0wget.exe" --no-check-certificate https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="%~dp0rdpwrap.ini"
+@REM "%~dp0wget.exe" --no-check-certificate https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="%~dp0rdpwrap.ini"
+%~dp0wget.exe" --no-check-certificate https://raw.githubusercontent.com/sebaxakerhtc/rdpwrap.ini/master/rdpwrap.ini --output-document="%~dp0rdpwrap.ini"
 @REM "wget.exe" --no-check-certificate https://raw.githubusercontent.com/zeram/rdpwrap/master/res/rdpwrap.ini --output-document="rdpwrap.ini"
-"wget.exe" --no-check-certificate https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="rdpwrap.ini"
+@REM "wget.exe" --no-check-certificate https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="rdpwrap.ini"
+"wget.exe" --no-check-certificate https://raw.githubusercontent.com/sebaxakerhtc/rdpwrap.ini/master/rdpwrap.ini --output-document="rdpwrap.ini"
 
 
 
