@@ -12,6 +12,9 @@ echo [-] Installer executable not found.
 echo Please extract all files from the downloaded package or check your anti-virus.
 :anykey
 
+@REM https://eternallybored.org/misc/wget/
+@REM https://eternallybored.org/misc/wget/releases/wget-1.21.4-win64.zip
+
 @REM https://stackoverflow.com/questions/25648155/windows-command-line-to-read-version-info-of-an-executable-file
 wmic datafile where name="C:\\Windows\\System32\\termsrv.dll" get Version /value
 
@@ -25,7 +28,8 @@ wmic datafile where name="C:\\Windows\\System32\\termsrv.dll" get Version /value
 @REM "wget.exe" --no-check-certificate https://raw.githubusercontent.com/asmtron/rdpwrap/master/res/rdpwrap.ini --output-document="rdpwrap.ini"
 @REM "wget.exe" --no-check-certificate https://raw.githubusercontent.com/sebaxakerhtc/rdpwrap.ini/master/rdpwrap.ini --output-document="rdpwrap.ini"
 
-
+copy ".\rdpwrap.ini" "C:\Program Files\RDP Wrapper\rdpwrap.ini" /y
+dir "C:\Program Files\RDP Wrapper\*.*"
 
 @echo off
 if not exist "%~dp0RDPWInst.exe" goto :error
@@ -40,3 +44,21 @@ goto :anykey
 echo [-] Installer executable not found.
 echo Please extract all files from the downloaded package or check your anti-virus.
 :anykey
+
+@REM .ini file keeps locking and RDPWrapper keeps using the default config file.
+@REM So stop the termservices, copy file then restart term services.
+
+net stop UmRdpService
+ping -n 1 127.0.0.1 >NUL
+net stop TermService
+ping -n 10 127.0.0.1 >NUL
+
+copy ".\rdpwrap.ini" "C:\Program Files\RDP Wrapper\rdpwrap.ini" /y
+dir "C:\Program Files\RDP Wrapper\*.*"
+
+ping -n 5 127.0.0.1 >NUL
+
+net start TermService
+ping -n 2 127.0.0.1 >NUL
+net start UmRdpService
+
