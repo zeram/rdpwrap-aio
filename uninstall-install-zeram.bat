@@ -48,10 +48,14 @@ echo Please extract all files from the downloaded package or check your anti-vir
 @REM .ini file keeps locking and RDPWrapper keeps using the default config file.
 @REM So stop the termservices, copy file then restart term services.
 
+net start
+
 net stop UmRdpService
 ping -n 1 127.0.0.1 >NUL
 net stop TermService
 ping -n 10 127.0.0.1 >NUL
+
+net start
 
 copy ".\rdpwrap.ini" "C:\Program Files\RDP Wrapper\rdpwrap.ini" /y
 dir "C:\Program Files\RDP Wrapper\*.*"
@@ -61,4 +65,6 @@ ping -n 5 127.0.0.1 >NUL
 net start TermService
 ping -n 2 127.0.0.1 >NUL
 net start UmRdpService
+
+net start
 
